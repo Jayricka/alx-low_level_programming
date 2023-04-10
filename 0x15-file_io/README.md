@@ -1,0 +1,1 @@
+In general, file I/O involves opening a file, reading or writing data to the file, and then closing the file. The specific details of how this is done depend on the programming language and operating system being used.
