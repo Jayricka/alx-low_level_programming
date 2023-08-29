@@ -1,0 +1,31 @@
+#!/usr/bin/python3
+
+# Variables
+NAME = school
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -pedantic
+RM = rm -f
+
+# Rules
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $@
+
+clean:
+	$(RM) *~ $(NAME)
+
+oclean:
+	$(RM) $(OBJ)
+
+fclean: clean oclean
+
+re: fclean all
+
+ifeq ("$(wildcard m.h)","")
+$(error Header file m.h is missing!)
+endif
+
+.PHONY: all clean oclean fclean re
