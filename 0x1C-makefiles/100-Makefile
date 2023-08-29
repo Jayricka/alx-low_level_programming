@@ -1,37 +1,20 @@
-#!/usr/bin/make -f
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Makefile for compiling the "school" program
+.PHONY: all clean oclean fclean re
 
-# Variables
-NAME = school           # The name of the executable
-SRC = main.c school.c   # Source code files
-OBJ = $(SRC:.c=.o)      # Object files
-CC = gcc                # Compiler command
-CFLAGS = -Wall -Werror -Wextra -pedantic  # Compiler flags
-RM_CMD = rm -f          # File removal command
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
-# Rules
-
-# Rule to build the executable
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $@
-
-# Rule to clean temporary files and the executable
 clean:
-	$(RM_CMD) *~ $(NAME)
+	$(RM) *~ $(NAME)
 
-# Rule to clean object files
 oclean:
-	$(RM_CMD) $(OBJ)
+	$(RM) $(OBJ)
 
-# Rule to clean temporary files, the executable, and object files
 fclean: clean oclean
-	$(RM_CMD) $(NAME)
 
-# Rule to force recompilation of all source files
 re: fclean all
-
-# End of Makefile
-
