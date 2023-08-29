@@ -1,31 +1,37 @@
-#!/usr/bin/python3
+#!/usr/bin/make -f
+
+# Makefile for compiling the "school" program
 
 # Variables
-NAME = school
-SRC = main.c school.c
-OBJ = $(SRC:.c=.o)
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pedantic
-RM = rm -f
+NAME = school           # The name of the executable
+SRC = main.c school.c   # Source code files
+OBJ = $(SRC:.c=.o)      # Object files
+CC = gcc                # Compiler command
+CFLAGS = -Wall -Werror -Wextra -pedantic  # Compiler flags
+RM_CMD = rm -f          # File removal command
 
 # Rules
+
+# Rule to build the executable
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $@
 
+# Rule to clean temporary files and the executable
 clean:
-	$(RM) *~ $(NAME)
+	$(RM_CMD) *~ $(NAME)
 
+# Rule to clean object files
 oclean:
-	$(RM) $(OBJ)
+	$(RM_CMD) $(OBJ)
 
+# Rule to clean temporary files, the executable, and object files
 fclean: clean oclean
+	$(RM_CMD) $(NAME)
 
+# Rule to force recompilation of all source files
 re: fclean all
 
-ifeq ("$(wildcard m.h)","")
-$(error Header file m.h is missing!)
-endif
+# End of Makefile
 
-.PHONY: all clean oclean fclean re
