@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 
+"""island_perimeter"""
+
+
 def island_perimeter(grid):
+    """Calculate the perimeter of the island described in grid."""
     perimeter = 0
     rows, cols = len(grid), len(grid[0])
-    
+
     for row in range(rows):
         for col in range(cols):
             if grid[row][col] == 1:
@@ -13,6 +17,5 @@ def island_perimeter(grid):
                     perimeter -= 2  # Subtract 2 for shared edge
                 if col > 0 and grid[row][col - 1] == 1:
                     perimeter -= 2  # Subtract 2 for shared edge
-    
-    return perimeter
 
+    return perimeter
